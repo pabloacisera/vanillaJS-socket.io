@@ -19,15 +19,11 @@ io.on('connection', (socket) => {
     console.log('>>> Socket conectado >>>', socket.id);//socket me permite ver lo datos del cliente conectado
 
     /**emisiones */
-
-    socket.emit("ping")
-
     /**obtener respuesta del front */
-    socket.on('userId', (userId)=> {
-        console.log('Esta la respuesta del frontend:', userId)
-    })
-
-
+    socket.on('nombre-paciente', (nombre)=> {
+        console.log('User ID recibido: ', nombre); // Asegurarse de que el ID se recibe correctamente
+        io.emit('toastr-event', `${nombre}`);
+    });
 
     socket.on('disconnect', () => {
         console.log('>>> Socket desconectado >>>');
